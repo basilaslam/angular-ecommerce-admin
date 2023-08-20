@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate{
-  constructor(private router: Router){}
+  constructor(private router: Router,private _authService: AuthService){}
   canActivate(): boolean {
     if(this.checkLocalStorage()){
       return true
@@ -25,8 +25,9 @@ export class AuthGuard implements CanActivate{
 
 
   checkLocalStorage(){
-    const token =  localStorage.getItem('authToken') as string
-    if(token.length > 0){
+    const token =  this._authService.getAuthToken()
+
+    if(token && token.length > 0){
       return true
     }else{
      return false
