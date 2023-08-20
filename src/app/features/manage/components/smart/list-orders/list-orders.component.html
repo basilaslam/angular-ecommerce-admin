@@ -1,0 +1,133 @@
+<section class="p-4 pb-0 sm:ml-64 pt-16">
+  <div
+    class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full mb-1">
+      <div class="mb-4">
+        <nav class="flex mb-5" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
+            <li class="inline-flex items-center">
+              <a href="#"
+                class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
+                <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                  </path>
+                </svg>
+                Home
+              </a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <a href="#"
+                  class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Manage</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">Orders</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">All products</h1>
+      </div>
+      <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100 dark:divide-gray-700">
+        <div class="flex items-center mb-4 sm:mb-0">
+          <form class="sm:pr-3" action="#" method="GET">
+            <label for="products-search" class="sr-only">Search</label>
+            <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
+              <input type="text" name="email" id="products-search"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Search for products">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div class="overflow-x-auto">
+      <div class="inline-block min-w-full align-middle">
+        <div class="overflow-hidden shadow min-h-[600px]">
+          <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
+            <thead class="bg-gray-100 dark:bg-gray-700">
+              <tr>
+                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                  Order Id
+                </th>
+                <th scope="col"
+                  class="p-4 text-xs w-32 font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                  Order Email
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                  Order Username
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                  Payment Provider
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                  Total Order Item
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                  Total Amount
+                </th>
+                <th scope="col"
+                  class="p-4 text-xs font-medium text-left mx-auto flex justify-center text-gray-500 uppercase dark:text-gray-400">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+
+              <tr *ngFor="let order of orders" class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                  <div class="text-base font-semibold text-gray-900 dark:text-white">{{order._id}}</div>
+                </td>
+                <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                  <div class="text-sm font-normal text-gray-500 dark:text-gray-400">{{order.customer.email}}</div>
+                </td>
+                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{order.customer.username}}
+                </td>
+                <td
+                  class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                  {{order.paymentProvider}}
+                </td>
+                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{order.totalOrderItems}}
+                </td>
+                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{order.orderPrice | currency:'INR':'symbol':'3.0' }}
+                </td>
+
+                <td class="p-4 space-x-2 whitespace-nowrap">
+                  <label for="orderStatus{{ order._id }}"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                  <select id="orderStatus{{ order._id }}" (change)="updateStaus($event, order._id)"
+                    [disabled]="order.status == 'DELIVERED'"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option *ngFor="let status of statusArray" [value]="status" [selected]="order.status === status">{{
+                      status }}</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
