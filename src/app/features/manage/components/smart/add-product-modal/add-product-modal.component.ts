@@ -4,6 +4,7 @@ import { ProductService } from '../../../services/product.service';
 import { Category } from './model/catogeries.model';
 import { Drawer, DrawerOptions } from 'flowbite';
 import { SubSink } from 'subsink';
+import { HotToastService } from '@ngneat/hot-toast';
 @Component({
   selector: 'app-add-product-modal',
   templateUrl: './add-product-modal.component.html',
@@ -18,7 +19,7 @@ export class AddProductModalComponent implements OnInit, OnDestroy{
   mainImage! : string
   @ViewChild('createProductDrawer', { static: false }) createProductDrawer!: ElementRef;
 
-  constructor(private fb: FormBuilder, private _productService: ProductService, ) {
+  constructor(private fb: FormBuilder, private _productService: ProductService, private _toast: HotToastService) {
     this.productForm = this.fb.group({
       name: [''],
       description: [''],
@@ -55,9 +56,6 @@ export class AddProductModalComponent implements OnInit, OnDestroy{
     formData.append('category', this.productForm.value.category);
     formData.append('mainImage', this.mainImage);
 
-    formData.forEach((value)=>{
-      console.log(value);
-    })
 
     return formData
   }
@@ -65,16 +63,14 @@ export class AddProductModalComponent implements OnInit, OnDestroy{
   onSubmit() {
 
     const formData = this.settingUpToSubmit()
-    console.log(JSON.stringify(formData))
 
       this.subs.add(this._productService.createProduct(formData).subscribe(data => {
 
         if(data._id){
+          this._toast.success('💼 new product successfully created')
           this.refreashData.emit()
         }
       }))
-
-
 
   }
 

@@ -1,6 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { AuthService } from '../../authentication/auth.service';
-import { User } from '../../authentication/models/api.model';
 
 @Component({
   selector: 'app-sidebar',

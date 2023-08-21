@@ -30,14 +30,13 @@ export class LoginComponent {
       this.subs.add(this._authSercice.login(user).subscribe((data => {
         console.log('Login Success');
         if(data.success && data.data.user.role === 'ADMIN'){
-          this.store.dispatch(AuthActions.setAuthInfo())
+          this.store.dispatch(AuthActions.setUserData(data.data.user))
           this._authSercice.saveData(data)
           this._router.navigate(['/'])
         }else if(data.success){
           console.log('invalid credentials')
         }else{
           console.log(data.message);
-
         }
       })))
     }

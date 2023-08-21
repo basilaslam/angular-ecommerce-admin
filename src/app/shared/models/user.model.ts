@@ -1,4 +1,4 @@
-export interface USER {
+export interface Admin {
   __v: number
   _id: string
   avatar: Avatar

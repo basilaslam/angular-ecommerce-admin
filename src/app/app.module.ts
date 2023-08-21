@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducer as authReducer } from './features/auth/store/reducer';
 import { SharedModule } from './shared/shared.module';
-
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    HotToastModule.forRoot(),
     StoreModule.forRoot({}),
     StoreModule.forFeature('auth',authReducer),
     StoreDevtoolsModule.instrument({

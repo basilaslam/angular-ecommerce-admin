@@ -7,7 +7,6 @@ import { ListProductsComponent } from './components/smart/list-products/list-pro
 const routes: Routes = [{ path: '', component: ManageComponent, children: [
   {path: 'orders', component: ListOrdersComponent},
   {path: 'products', component: ListProductsComponent},
-  {path: '**', redirectTo: 'orders', pathMatch: 'full'}
 ] }];
 
 @NgModule({

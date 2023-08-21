@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { AppStateInterface } from 'src/app/types/appState.interface';
 import { Observable } from 'rxjs';
 import { SubSink } from 'subsink';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-edit-product-modal',
@@ -22,7 +23,7 @@ export class EditProductModalComponent implements OnInit, OnDestroy{
   categories!: Category[]
   subImages : string[] = []
   mainImage! : string
-  constructor( private store: Store<AppStateInterface>, private fb: FormBuilder, private _productService: ProductService, ) {
+  constructor( private store: Store<AppStateInterface>, private fb: FormBuilder, private _productService: ProductService,private _toast: HotToastService ) {
     this.productForm = this.fb.group({
       name: [''],
       description: [''],
@@ -88,7 +89,7 @@ export class EditProductModalComponent implements OnInit, OnDestroy{
       this.subs.add(this._productService.updateProduct(this.$product?._id,formData).subscribe(data => {
 
         if(data.success){
-
+          this._toast.success('💼 product updated')
           this.refreashData.emit()
           this.drawerEvent()
         }
@@ -108,7 +109,6 @@ export class EditProductModalComponent implements OnInit, OnDestroy{
 
     drawerEvent(){
       this.isVisible = !this.isVisible
-      console.log('this.isVisible', this.isVisible)
     }
 
     ngOnDestroy(): void {

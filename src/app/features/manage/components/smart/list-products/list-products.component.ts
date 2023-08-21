@@ -5,6 +5,7 @@ import { Category } from '../add-product-modal/model/catogeries.model';
 import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
 import { initFlowbite } from 'flowbite'
 import { SubSink } from 'subsink';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-list-products',
@@ -22,7 +23,7 @@ export class ListProductsComponent implements OnInit, OnDestroy{
   deleteModalStatus = true
 
 
-    constructor(private _productService: ProductService){}
+    constructor(private _productService: ProductService, private _toast: HotToastService){}
 
 
     ngOnInit(): void {
@@ -62,9 +63,9 @@ export class ListProductsComponent implements OnInit, OnDestroy{
 
 
       this.subs.add(this._productService.deleteProduct(id).subscribe(data => {
-        console.log(data);
 
         if (data.success) {
+          this._toast.error('💼 product deleted')
           const index = this.products.findIndex(product => product._id === id);
 
           if (index !== -1) {

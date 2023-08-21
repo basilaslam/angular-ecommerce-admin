@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { LoginModel } from './models/auth.model';
-import { LoginApiResponse, LoggedInUser, User, BasicApiResponse } from './models/api.model';
+import { LoginApiResponse, LoggedInUser, Admin, BasicApiResponse } from './models/api.model';
 import { SubSink } from 'subsink';
 
 
@@ -16,7 +16,6 @@ import { SubSink } from 'subsink';
 export class AuthService implements OnDestroy {
   subs = new SubSink()
 
-   userSubject = new BehaviorSubject<User | null>(null)
    tokenSubject = new BehaviorSubject<string | null>(null)
   constructor(
     private _httpClient: HttpClient,
@@ -30,10 +29,6 @@ export class AuthService implements OnDestroy {
 
   initAuthStatus(){
     this.tokenSubject.next(this.getAuthToken())
-    if(localStorage.getItem('_admin')){
-
-      this.userSubject.next(JSON.parse(localStorage.getItem('_admin') as string))
-    }
   }
 
   login(user:LoginModel): Observable<LoginApiResponse>{
@@ -42,8 +37,6 @@ export class AuthService implements OnDestroy {
 
 
   saveData({data}: LoginApiResponse){
-    localStorage.setItem('_admin', JSON.stringify(data.user))
-    this.userSubject.next(data.user)
     localStorage.setItem('authToken', data.accessToken)
     this.tokenSubject.next(data.accessToken)
     localStorage.setItem('refreashToken', data.refreshToken)
@@ -64,9 +57,6 @@ export class AuthService implements OnDestroy {
     this.subs.add(this._httpClient.post(`${environment.URI}/users/logout`,null,  { responseType: 'text' }).subscribe(()=>{
       localStorage.setItem('authToken', '')
       localStorage.setItem('refreashToken', '')
-      localStorage.setItem('_admin', '')
-      this.userSubject.next(null)
-      this.tokenSubject.next(null)
       this.tokenSubject.next(null)
       this._router.navigate(['/auth/login'])
     }))

@@ -1,4 +1,3 @@
-import { USER } from "src/app/shared/models/user.model"
 
 
 export interface RegisterApiResponse {
@@ -15,7 +14,7 @@ export interface BasicApiResponse {
 }
 
 export interface Data {
-  user: USER
+  user: Admin
 }
 
 // LoginApi Response
@@ -30,10 +29,10 @@ export interface LoginApiResponse {
 export interface Data {
   accessToken: string
   refreshToken: string
-  user: User
+  user: Admin
 }
 
-export interface User {
+export interface Admin {
   __v: number
   _id: string
   avatar: Avatar
@@ -56,7 +55,7 @@ export interface Avatar {
 // loggedInUser Model
 
 export interface LoggedInUser {
-    data: USER,
+    data: Admin,
     message: string
     statusCode: number
     success: boolean
