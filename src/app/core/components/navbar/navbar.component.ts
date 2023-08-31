@@ -13,7 +13,7 @@ import { selectUserData } from 'src/app/features/auth/store/selectors';
 })
 export class NavbarComponent implements OnInit, OnDestroy{
 
-  user!: Admin
+  user : Admin | null = null
   subs = new SubSink()
   constructor(private _authService: AuthService, private _store: Store<AppStateInterface>
     ){ }
@@ -22,8 +22,10 @@ export class NavbarComponent implements OnInit, OnDestroy{
     console.log('logginf');
 
       this._store.select(selectUserData).subscribe(data => {
-        this.user = data
-        console.log(data);
+        if(Object.keys(data).length >  0){
+           this.user = data
+          console.log(data);
+        }
 
     })
   }
